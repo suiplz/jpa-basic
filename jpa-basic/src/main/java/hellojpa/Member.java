@@ -2,23 +2,27 @@ package hellojpa;
 
 import lombok.Data;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Data
 @Entity
 public class Member {
 
-    @Id
+    @Id @GeneratedValue
+    @Column(name = "MEMBER_ID")
     private Long id;
 
-    @Column(name = "name", nullable = false)
+    @Column(name = "username")
     private String username;
 
+//    @Column(name = "TEAM_ID")
+//    private Long teamId;
 
-    public Member() {
+    @ManyToOne
+    @JoinColumn(name = "TEAM_ID")
+    private Team team;
 
-    }
+
 
 }
+
